@@ -1,35 +1,21 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "wanghaipengture/dabai",
+    "description": "the dabai framework",
     "type": "project",
     "keywords": [
-        "framework",
-        "thinkphp",
-        "ORM"
+        "dabai",
+        "chongwu"
     ],
-    "homepage": "http://thinkphp.cn/",
+    "homepage": "http://dabaipet.com",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
+            "name": "wanghaipengture",
+            "email": "hp7070@sina.cn"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "topthink/framework": "~5.0.0",
-        "topthink/think-image": "^1.0",
-        "topthink/think-queue": "^1.1",
-        "topthink/think-migration": "^1.1",
-        "topthink/think-testing": "^1.0",
-        "topthink/think-mongo": "1.7",
-        "topthink/think-captcha": "^1.0",
-        "topthink/think-angular": "^1.0"
-    },
-    "extra": {
-        "think-path": "thinkphp"
-    },
-    "config": {
-        "preferred-install": "dist"
+        "php": ">=5.4.0"        
     }
+   
 }
