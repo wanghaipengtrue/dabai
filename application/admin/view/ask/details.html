@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="">
+
+    <title>大白宠物医院后台</title>
+
+    <!-- Bootstrap core CSS -->
+    {load file='__admin__/css/bootstrap.min.css'}
+    {load file='__admin__/css/bootstrap-reset.css'}
+
+    <!--external css-->
+    {load file='__admin__/assets/font-awesome/css/font-awesome.css'}
+    {load file='__admin__/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'}
+    {load file='__admin__/css/owl.carousel.css'}
+
+    <!-- Custom styles for this template -->
+    {load file='__admin__/css/style.css'}
+    {load file='__admin__/css/style-responsive.css'}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    {load file='__admin__/js/html5shiv.js'}
+    {load file='__admin__/js/respond.min.js'}
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" >
+    <!--header start-->
+    {include file="public/admin_header" /}
+    <!--header end-->
+    <!--sidebar start-->
+    {include file="public/admin_left" /}
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!-- page start-->
+            <!--<div class="row">
+                <div class="col-lg-12">
+                    &lt;!&ndash;breadcrumbs start &ndash;&gt;
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                        <li class="active">会员列表</li>
+                    </ul>
+                    &lt;!&ndash;breadcrumbs end &ndash;&gt;
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            会员信息
+                            <span class="pull-right"> <a href="{:url('/admin/member/index');}">返回</a></span>
+                        </header>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="cmobile" class="control-label col-lg-2">手机号：</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="cmobile" name="mobile" minlength="2" type="digits" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cpassword" class="control-label col-lg-2">密码：</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="cpassword" name="password" minlength="2" type="password" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="ccomment" class="control-label col-lg-2">备注：</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control " id="ccomment" name="comment" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-danger" type="submit">添加</button>
+                                            <button class="btn btn-default" type="reset">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            2013 &copy; FlatLab by VectorLab.
+            <a href="#" class="go-top">
+                <i class="icon-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+{load file='__admin__/js/jquery.js'}
+{load file='__admin__/js/bootstrap.min.js'}
+<!-- select lan mu-->
+{load file='__admin__/js/jquery.dcjqaccordion.2.7.js'}
+{load file='__admin__/js/jquery.scrollTo.min.js'}
+
+{load file='__admin__/js/jquery.nicescroll.js'}
+<!-- content -->
+{load file='__admin__/js/jquery.validate.min.js'}
+{load file='__admin__/js/respond.min.js'}
+
+<!-- +++ -->
+{load file='__admin__/js/common-scripts.js'}
+{load file='__admin__/js/form-validation-script.js'}
+
+
+
+
+
+</body>
+</html>

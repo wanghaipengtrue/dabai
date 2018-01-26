@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="">
+
+    <title>大白宠物医院后台</title>
+
+    <!-- Bootstrap core CSS -->
+    {load file='__admin__/css/bootstrap.min.css'}
+    {load file='__admin__/css/bootstrap-reset.css'}
+    {load file='__admin__/css/admin.css'}
+    <!--external css-->
+    {load file='__admin__/assets/font-awesome/css/font-awesome.css'}
+
+    <!-- Custom styles for this template -->
+    {load file='__admin__/css/style.css'}
+    {load file='__admin__/assets/bootstrap-fileupload/bootstrap-fileinput.css'}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    {load file='__admin__/js/html5shiv.js'}
+    {load file='__admin__/js/respond.min.js'}
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" >
+    <!--header start-->
+    {include file="public/admin_header" /}
+    <!--header end-->
+    <!--sidebar start-->
+    {include file="public/admin_left" /}
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            添加文章
+                            <span class="pull-right"> <a href="{:url('/articles/index');}">返回</a></span>
+                        </header>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <form enctype="multipart/form-data" class="cmxform form-horizontal tasi-form" action="{:url('/articles/save');}" id="signupForm" method="post"  data-provides="fileinput">
+                                    <input type="hidden" value="add" name="savetype">
+                                    <div class="form-group ">
+                                        <label for="titles" class="control-label col-lg-2">文章标题：</label>
+                                        <div class="col-lg-5">
+                                            <input class=" form-control" id="titles" name="titles" minlength="2" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="shorttitle" class="control-label col-lg-2">短标题：</label>
+                                        <div class="col-lg-5">
+                                            <input class=" form-control" id="shorttitle" name="shorttitle" minlength="2" type="text" required />
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group ">
+                                                        <label for="sortrank" class="control-label">排序：</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                <input class=" form-control" id="sortrank" name="sortrank" minlength="2" type="text" required />
+                                             </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-2">自定义属性：</label>
+                                        <div class="col-lg-10">
+                                                <label class="label_check" for="checkbox-01">
+                                                    <input name="flag[]" id="checkbox-01" value="h" type="checkbox" />头条[h] </label>                                    </label>
+                                                <label class="label_check" for="checkbox-02">
+                                                    <input name="flag[]" id="checkbox-02" value="c" type="checkbox" />推荐[c]</label>
+                                                <label class="label_check" for="checkbox-03">
+                                                    <input name="flag[]" id="checkbox-03" value="s" type="checkbox" />滚动[s]</label>
+                                                <label class="label_check" for="checkbox-04">
+                                                    <input name="flag[]" id="checkbox-04" value="j" type="checkbox" />跳转[j]</label>
+                                            </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="tag" class="control-label col-lg-2">TAG标签：</label>
+                                        <div class="col-lg-5">
+                                            <input class="form-control " id="tag" name="tag" type="text" />
+                                        </div>
+                                        <div class="col-lg-5">
+                                            （标签以“，”逗号分开）
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-2">文章缩略图：</label>
+                                        <div class="col-lg-5">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="pull-left fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                                    <img id="picImg" style="width: 100%;height: auto;max-height: 140px;" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                                </div>
+                                                <div class="pull-left fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                                <div class="pull-left btn-top">
+                                                    <span class="btn btn-primary btn-file">
+                                                        <span class="fileinput-new">选择文件</span>
+                                                        <span class="fileinput-exists">换一张</span>
+                                                        <input name="thumpic" id="picID" accept="image/gif,image/jpeg,image/x-png" type="file">
+                                                    </span>
+                                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                                </div>
+                                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i>上传图片</span>
+                                                   <span class="fileupload-exists"><i class="icon-undo"></i> 修改图片</span>
+                                                   <input type="file" class="default" />
+                                                   </span>
+                                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                                </div>
+                                            </div>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="source" class="control-label col-lg-2">文章来源：</label>
+                                        <div class="col-lg-5">
+                                            <input class="form-control " id="source" name="source" type="text"  required/>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group ">
+                                                        <label for="writer" class="control-label">作者：</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <input class=" form-control" id="writer" name="writer" minlength="2" type="text" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-2">文章主栏目：</label>
+                                        <div class="col-lg-5">
+                                            <select class="form-control m-bot15" name="idtitle">
+                                                {volist name="Level" id="vo"}
+                                                <option value="{$vo.id},{$vo.title}">{$vo.html}{$vo.title}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="keywords" class="control-label col-lg-2">文章关键词：</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="keywords" name="keywords" type="text" required/>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="description" class="control-label col-lg-2">文章摘要：</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control " id="description" name="description" required></textarea></div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-12">文章内容：</label>
+                                        <div class="col-lg-12" >
+                                            <textarea id="editor" name="body"  style="height:300px;"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="click" class="control-label col-lg-2">浏览次数：</label>
+                                        <div class="col-lg-5">
+                                            <input class="form-control " id="click" name="click" type="text"  required/>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group ">
+                                                        <label for="titlecolor" class="control-label">标题颜色：</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <input class=" form-control" id="titlecolor" name="titlecolor" minlength="2" type="text" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-danger" type="button" onclick="checkSubmit();"  >添加</button>
+                                            <button class="btn btn-default" type="reset">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            2013 &copy; FlatLab by VectorLab.
+            <a href="#" class="go-top">
+                <i class="icon-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+{load file='__admin__/js/jquery-1.8.3.min.js'}
+{load file='__admin__/js/bootstrap.min.js'}
+<!-- select lan mu-->
+{load file='__admin__/js/jquery.dcjqaccordion.2.7.js'}
+{load file='__admin__/js/jquery.scrollTo.min.js'}
+
+{load file='__admin__/js/jquery.nicescroll.js'}
+<!-- content -->
+{load file='__admin__/js/jquery.validate.min.js'}
+{load file='__admin__/js/respond.min.js'}
+
+<!-- +++ -->
+{load file='__admin__/js/common-scripts.js'}
+{load file='__admin__/js/form-validation-script.js'}
+
+<!-- radio-->
+{load file='__admin__/js/ga.js'}
+{load file='__admin__/js/form-component.js'}
+
+<!--上传图片-->
+{load file='__admin__/assets/bootstrap-fileupload/bootstrap-fileinput.js'}
+
+{load file='__admin__/js/ueditor/ueditor.config.js'}
+{load file='__admin__/js/ueditor/ueditor.all.min.js'}
+{load file='__admin__/js/ueditor/lang/zh-cn/zh-cn.js'}
+{load file='__layui__/layui.js'}
+<script type="text/javascript">
+    layui.use('form', function(){
+        var form = layui.form;
+    })
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+    function checkSubmit(){
+        var form = new FormData(document.getElementById("signupForm"));
+        $.ajax({
+            url:"/articles/save",
+            type:"post",
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(res){
+                if(res.status==1){
+                    layer.alert(res.msg, {icon: 1,btn: ['确定'],yes: function(index, layero){
+                        top.location.href = res.Turl;
+                    }});
+                }else{
+                    layer.alert('添加失败', {icon: 2});
+                }
+            },
+            error:function(res){
+                layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+            }
+        });
+        get();//此处为上传文件的进度条
+    }
+
+</script>
+
+</body>
+</html>

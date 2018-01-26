@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大白管理员后台登录</title>    
+    {load file='__layui__/css/layui.css'}
+    {load file='__layui__/layui.js'}
+    {load file='__css__/currency.css'}
+    {load file='__admin__/css/login.css'}
+    {load file='__admin__/js/jquery-1.8.3.min.js'}
+    {load file='__admin__/js/lizitexiao.js'}
+    <style>
+        body{height:100%;background:#f8f8f8;overflow:hidden;}
+        canvas{z-index:-1;position:absolute;}
+    </style>
+    <script>
+        $(document).ready(function() {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#e2e2e2',
+                lineColor: '#e2e2e2'
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<canvas class="pg-canvas" width="1280" height="597"></canvas>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="admin-login layui-col-xs12 layui-col-md12 layui-col-sm12">
+            <div class="layui-form layui-form-pane" >
+                <div class="layui-form-item">
+                    <h2>大白宠物医院后台管理系统</h2>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" id="name"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="password" id="password"  placeholder="请输入登录密码" autocomplete="off" class="layui-input">
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label imgVerify" ><img id="imgVerify" src="{:captcha_src()}" onclick="fleshVerify()"></label>
+                    <div class="layui-input-block">
+                        <input type="text" name="vertify" id="vertify"  placeholder="请输入左侧验证码" autocomplete="off" class="layui-input">
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo" onclick="checkadminLogin()">登录</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+	
+    function fleshVerify(){
+        //重载验证码
+        $('#imgVerify').attr('src','{:captcha_src()}&r='+Math.floor(Math.random()*100));
+    }
+    function checkadminLogin(){
+        var name = $('#name').val();
+        var password = $('#password').val();
+        var vertify = $('#vertify').val();
+        if( name == '' || password ==''){
+            layer.msg('用户名或密码不能为空!'); //alert('用户名或密码不能为空');
+            return;
+        }
+        if(vertify =='' || vertify.length!=3){
+            layer.msg('图形验证码不能为空!');
+            return;
+        }
+
+        $.ajax({
+            url:'/admin/login/adminDo&id='+Math.random(),
+            type:'post',
+            dataType:'json',
+            data:{name:$("#name").val(),password:$("#password").val(),vertify:$("#vertify").val()},
+            success:function(res){
+                if(res.status==1){
+                    top.location.href = res.url;
+                }else{
+                    layer.alert(res.msg, {icon: 2});
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+            }
+        })
+    }
+	layui.use('form', function(){
+        var form = layui.form;
+
+        //各种基于事件的操作，下面会有进一步介绍
+    });
+</script>
+
+
+</body>
+</html>

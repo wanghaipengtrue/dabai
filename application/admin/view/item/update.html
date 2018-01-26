@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="">
+
+    <title>大白宠物医院后台</title>
+
+    <!-- Bootstrap core CSS -->
+    {load file='__admin__/css/bootstrap.min.css'}
+    {load file='__admin__/css/bootstrap-reset.css'}
+
+    <!--external css-->
+    {load file='__admin__/assets/font-awesome/css/font-awesome.css'}
+    {load file='__admin__/css/owl.carousel.css'}
+
+    <!-- Custom styles for this template -->
+    {load file='__admin__/css/style.css'}
+    {load file='__admin__/css/admin.css'}
+    {load file='__admin__/css/style-responsive.css'}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    {load file='__admin__/js/html5shiv.js'}
+    {load file='__admin__/js/respond.min.js'}
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" >
+    <!--header start-->
+    {include file="public/admin_header" /}
+    <!--header end-->
+    <!--sidebar start-->
+    {include file="public/admin_left" /}
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!-- page start-->
+            <!--<div class="row">
+                <div class="col-lg-12">
+                    &lt;!&ndash;breadcrumbs start &ndash;&gt;
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                        <li class="active">会员列表</li>
+                    </ul>
+                    &lt;!&ndash;breadcrumbs end &ndash;&gt;
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            修改栏目
+                            <span class="pull-right"> <a href="{:url('/admin/column/index');}">返回</a></span>
+                        </header>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="post" action="{:url('/admin/column/save');}">
+                                    <input type="hidden" name="id" value="{$reslut.id}">
+                                    <input type="hidden" name="savetype" value="update">
+                                    <div class="form-group ">
+                                        <label for="title" class="control-label col-lg-2">栏目名称：</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="title" name="title" minlength="2" type="text" value="{$reslut.title}"  required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="sort" class="control-label col-lg-2">排序：</label>
+                                        <div class="col-lg-5">
+                                            <input class="form-control " id="sort" name="sort" type="type" value="{$reslut.sort}"  required/>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            排序规则：由低->到->高
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-2">栏目层级：</label>
+                                        <div class="col-lg-5">
+                                            <input type="hidden" name="level" value="">
+                                            <select class="form-control m-bot15" name="pidlevel">
+
+                                                <option value="{$reslut.pid},{$reslut.level}">{$reslut.title}</option>
+                                                {volist name="Level" id="vo"}
+                                                <option value="{$vo.id},{$vo.level}">{$vo.html}{$vo.title}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            警示：如当前栏目有子栏目，不能选择选择其他栏目
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label  class="control-label col-lg-2">浏览权限：</label>
+                                        <div class="col-lg-10">
+
+                                            <label class="label_radio" for="radio-01">
+                                                <input name="ishidden" id="radio-01" value="0" type="radio" {if condition="($reslut.ishidden == 0) "} checked {else /}  {/if}/>开启
+                                            </label>
+
+                                            <label class="label_radio" for="radio-02">
+                                                <input name="ishidden" id="radio-02" value="1" type="radio" {if condition="($reslut.ishidden == 1) "} checked {else /}  {/if} /> 关闭
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="seotitle" class="control-label col-lg-2">栏目标题SEO：</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="seotitle" name="seotitle" value="{$reslut.seotitle}" type="text" required  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="keywords" class="control-label col-lg-2">栏目关键词：</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control " id="keywords" name="keywords" type="text" value="{$reslut.keywords}"  required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="describe" class="control-label col-lg-2">栏目描述：</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control " id="describe" name="describe"  required>{$reslut.describe}</textarea></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-danger" type="submit">添加</button>
+                                            <button class="btn btn-default" type="reset">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            2013 &copy; FlatLab by VectorLab.
+            <a href="#" class="go-top">
+                <i class="icon-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+{load file='__admin__/js/jquery.js'}
+{load file='__admin__/js/bootstrap.min.js'}
+<!-- select lan mu-->
+{load file='__admin__/js/jquery.dcjqaccordion.2.7.js'}
+{load file='__admin__/js/jquery.scrollTo.min.js'}
+
+<!--{load file='__admin__/js/jquery.nicescroll.js'}-->
+<!-- content -->
+{load file='__admin__/js/jquery.validate.min.js'}
+{load file='__admin__/js/respond.min.js'}
+
+<!-- +++ -->
+{load file='__admin__/js/common-scripts.js'}
+{load file='__admin__/js/form-validation-script.js'}
+
+<!-- radio-->
+{load file='__admin__/js/ga.js'}
+{load file='__admin__/js/form-component.js'}
+
+</body>
+</html>

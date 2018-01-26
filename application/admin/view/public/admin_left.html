@@ -1,0 +1,164 @@
+<aside>
+    <div id="sidebar"  class="nav-collapse " style="overflow: hidden; outline: none;">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+
+
+            <!--新系统 栏目模块 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-list"></i>
+                    <span>分类管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/admin/item/index');}">项目分类</a></li>
+                    <li><a  href="{:url('/admin/item/add');}">添加项目</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 文章模块 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class=" icon-file-text-alt"></i>
+                    <span>文章管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/admin/column/index');}">文章栏目</a></li>
+                    <li><a  href="{:url('/admin/articles/index');}">所有文章</a></li>
+                    <li><a  href="{:url('/admin/articles/add');}">添加文章</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 TAG模块 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-lightbulb"></i>
+                    <span>问答管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/admin/ask/index');}">所有问题</a></li>
+                    <li><a  href="{:url('/admin/ask/add');}">用户回答</a></li>
+                    <li><a  href="{:url('/admin/ask/add');}">问答标签</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 会员管理 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-user"></i>
+                    <span>会员管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/member/index');}">会员列表</a></li>
+                    <li><a  href="{:url('/member/add');}">添加会员</a></li>
+                    <li><a  href="{:url('/member/log');}">会员日志</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 栏目模块 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-hospital"></i>
+                    <span>医院管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/admin/hospital/index');}">医院列表</a></li>
+                    <li><a  href="{:url('/admin/hospital/add');}">添加医院</a></li>
+                    <li><a  href="{:url('/admin/reservation/index');}">预约管理</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 医生管理 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-user-md"></i>
+                    <span>医生管理</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/admin/doctor/index');}">所有医生</a></li>
+                    <li><a  href="{:url('/admin/doctor/add');}">添加医生</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 认证管理 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class=" icon-foursquare"></i>
+                    <span>认证管理</span>
+                </a>
+                <ul class="sub">
+                    <li class="sub-menu">
+                        <a  href="javascript:;">机构认证</a>
+                        <ul class="sub">
+                            <li><a  href="javascript:;">机构列表</a></li>
+                            <li><a  href="javascript:;">添加机构</a></li>
+                            <li><a  href="javascript:;">待审核</a></li>
+                            <li><a  href="javascript:;">已通过</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a  href="javascript:;">会员认证</a>
+                        <ul class="sub">
+                            <li><a  href="javascript:;">认证列表</a></li>
+                            <li><a  href="javascript:;">待审核</a></li>
+                            <li><a  href="javascript:;">已通过</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 信息统计 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="icon-user-md"></i>
+                    <span>信息统计</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{:url('/information/member');}">会员信息</a></li>
+                    <li><a  href="{:url('/information/doctor');}">医生信息</a></li>
+                    <li><a  href="{:url('/information/hospital');}">医院信息</a></li>
+                    <li><a  href="{:url('/information/finance');}">财务信息</a></li>
+                    <li><a  href="{:url('/information/ask');}">问答信息</a></li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+            <!--新系统 系统设置 start-->
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class=" icon-foursquare"></i>
+                    <span>系统管理</span>
+                </a>
+                <ul class="sub">
+                    <li class="sub-menu">
+                        <a  href="javascript:;">系统设置</a>
+                        <ul class="sub">
+                            <li><a  href="{:url('/setup/web');}">网站配置</a></li>
+                            <li><a  href="{:url('/setup/auth');}">权限设置</a></li>
+                            <li><a  href="{:url('/setup/picture');}">图片设置</a></li>
+                            <li><a  href="{:url('/setup/email');}">邮件设置</a></li>
+                            <li><a  href="{:url('/setup/sms');}">短信设置</a></li>
+                            <li class="sub-menu">
+                                <a  href="javascript:;">安全设置</a>
+                                <ul class="sub">
+                                    <li><a  href="{:url('/safe/csrf');}">CSRF防御</a></li>
+                                    <li><a  href="{:url('/safe/ip');}">禁止IP</a></li>
+                                    <li><a  href="{:url('/safe/code');}">验证码设置</a></li>
+                                    <li><a  href="{:url('/safe/Keyword');}">关键字过滤</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub">
+                    <li><a  href="{:url('/system/log');}">系统日志</a></li>
+                    <li><a  href="{:url('/system/cache');}">清除缓存</a></li>
+                    <li><a  href="{:url('/system/out');}">退出系统</a></li>
+                    </li>
+                </ul>
+            </li>
+            <!--新系统 end-->
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
