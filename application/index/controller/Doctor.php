@@ -20,14 +20,8 @@ class Doctor extends Controller {
 
 
 
-        return $this->fetch('index',['name'=>'wanghaipeng','email'=>'jdlfjslf@qq.com']);
+        return $this->fetch('doctor/index',['name'=>'wanghaipeng','email'=>'jdlfjslf@qq.com']);
     }
-
-    public function details(Request $request=null){
-
-        echo  $request->param('id');
-
-}
 
 
 }

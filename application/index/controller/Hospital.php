@@ -18,13 +18,11 @@ class Hospital extends \think\Controller{
     #默认首页
     public function index(){
 
-        return $this->fetch('index',['name'=>'wanghaipeng','email'=>'jdlfjslf@qq.com']);
+        return $this->fetch('hospital/index',['name'=>'wanghaipeng','email'=>'jdlfjslf@qq.com']);
     }
     #医院页面
     public function details(Request $request=null){
-
-
-
+        $hospitalId = $request->param('id');
 
         return $this->fetch('details');
     }

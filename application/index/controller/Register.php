@@ -8,9 +8,11 @@
 namespace app\index\controller;
 
 use app\index\model\Member;
+use app\index\model\Doctor as DoctorModel;
 use think\Request;
 use think\Session;
 use think\cache\driver\Redis;
+use think\Db;
 
 class Register extends Base
 {
@@ -84,7 +86,71 @@ class Register extends Base
         return $this->fetch('doctor');
 
     }
+    public function  regdoctor(Request $request=null)
+    {
+        //ajax
+        if ($request->isAjax()){
+            $dname = input('dname');
+            $dsex = input('dsex');
+            $dtitle = input('dtitle');
+            $dnumber = input('dnumber');
+            $dmobilenum = input('dmobilenum');
+            $dpiccode = input('dpiccode');
+            $dmobilecode = input('dmobilecode');
+            $dpassword = input('dpassword');
+            //校验数据
+            //验证数据
+            $rule = [
+                'regMobile'  =>  $dmobilenum,
+                'code' =>  $dmobilecode,
+                'regPassword' =>  $dpassword,
+            ];
+            //加载验证器
+            $msgValidate = $this->validate($rule,'ListRegister');
+            if(true !== $msgValidate){
+                return ['status'=>0,'msg'=>"$msgValidate"];
+            }
+            //验证图形验证码
+            if(!captcha_check($dpiccode)){
+                return ['status'=>0,'msg'=>"请输入正确的图形验证码!"];
+                die();
+            };
+            //验证手机验证码
+            $redis = new redis();
+            if($redis->get("$dmobilenum") != $dmobilecode){
+                return ['status'=>0,'msg'=>"手机验证码错误!"];
+                die();
+            };
+            $data = [
+                'phone' => "$Mobile",
+                'nikename' => '大白'.$Mobile,
+                'password' => "$hashedPassword",
+                'regip' =>$this->regIp,
+                'logip' =>$this->regIp
+            ];
+            $doctor = new DoctorModel();
+            $doctor->data($data);
+            $doctorR = $doctor->getDoctorOne("$dmobilenum");
+            if (!empty($doctorR)){
+                return ['status'=>0,'msg'=>"手机号已注册!"];
+            }
 
+            //加密插件 phpass-3.0
+            $PasswordHashs = new \PasswordHashs(8, false);
+            $hashedPassword = $PasswordHashs->HashPassword("$Password"); // 计算密码的哈希
+            $memberStats = $member->addMember("$Mobile","$hashedPassword");
+            if ($memberStats == true){
+                $Tmsg = "注册成功！";
+                $Turl = Url('/index');
+                return ['status'=>1,'msg'=>"$Tmsg",'Turl'=>"$Turl"];
+                exit();
+            }else{
+                $Tmsg = "注册失败！";
+                return ['status'=>0,'msg'=>"$Tmsg"];
+                exit();
+            }
+        }
+    }
     //医院入驻
     public function  hospital()
     {

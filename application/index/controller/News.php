@@ -1,15 +1,14 @@
 <?php
 namespace app\index\controller;
 
-class News
+/*大白新闻首页*/
+class News extends Base
 {
-    public function read($id)
+    public function index()
     {
-        return $id;
+        echo "11";
+        return $this->fetch("news/index");
     }
 
-    public function hello($name)
-    {
-        return 'Hello,'.$name;
-    }
+
 }

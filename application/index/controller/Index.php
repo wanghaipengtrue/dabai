@@ -27,5 +27,11 @@ class Index extends Controller
         //echo Env::get('database.username');
         return $this->fetch("index");
     }
+    public function hospitals(Request $request=null){
+        echo "11111111111111111";
+        $id = $request->param('id');
+
+        return $this->fetch('hospitals');
+    }
 
 }

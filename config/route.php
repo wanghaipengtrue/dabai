@@ -34,7 +34,7 @@ Route::domain('baike','baike');//百科 1
 Route::domain('tao','item');//商家项目
 Route::domain('doctor','@\app\index\controller\Doctor');//医生
 Route::domain('hospital','@\app\index\controller\Hospital');//医院
-Route::domain('news','@\app\index\controller\Article');//文章
+Route::domain('news','@\app\index\controller\News');//文章
 
 
 
@@ -49,13 +49,13 @@ return [
 
     //前台 医生详情ID
    /* '[doctor]'     => [
-        ':id'   => ['doctor/index', ['method' => 'get'], ['id' => '\d+']],
-    ],
+        ':id'   => ['index/doctor/details', ['method' => 'get'], ['id' => '\d+']],
+    ],*/
 
     //前台 医院详情ID
     '[hospital]'     => [
-        ':id'   => ['hospital/index', ['method' => 'get'], ['id' => '\d+']],
-    ],*/
+        ':id'   => ['index/hospital/details', ['method' => 'get'], ['id' => '\d+']],
+    ],
 
 
 
