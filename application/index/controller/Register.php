@@ -18,7 +18,6 @@ class Register extends Base
 {
 
    //用户注册
-
     public function  user()
     {
         $redis = new redis();
@@ -28,7 +27,7 @@ class Register extends Base
         $controller = $this->controller;
         return $this->fetch('user',['controller'=>$controller]);
     }
-    public function  userDo()
+    public function  reguser()
     {
         $Mobile =  input('regMobile'); // 手机号
         $captcha = input('imgVerifycode');//图形
@@ -47,7 +46,8 @@ class Register extends Base
         }
         //验证图形验证码
        if(!captcha_check($captcha)){
-            return ['status'=>0,'msg'=>"请输入正确的图形验证码!"];
+           $codeMsg = $this->showReturnCodeMsg('4000');
+           return ['status'=>2,'msg'=>"$codeMsg[msg]"];
            die();
         };
         //验证手机验证码
@@ -112,7 +112,8 @@ class Register extends Base
             }
             //验证图形验证码
             if(!captcha_check($dpiccode)){
-                return ['status'=>0,'msg'=>"请输入正确的图形验证码!"];
+                $codeMsg = $this->showReturnCodeMsg('4000');
+                return ['status'=>2,'msg'=>"$codeMsg"];
                 die();
             };
             //验证手机验证码

@@ -12,11 +12,12 @@ use think\Controller;
 use think\Request;
 use app\index\model\Smsm;
 
-class Sms extends Controller
+class Sms extends Base
 {
    public  function sendSms(){
        $phoneNumbers =  input('regMobile'); // 手机号
        $controller = input('controller');//图形
+       $vertify = input('vertify');//图形
        $rule = [
            'regMobile'  =>  $phoneNumbers
        ];
@@ -25,6 +26,12 @@ class Sms extends Controller
        if(true !== $msgValidate){
            return ['status'=>0,'msg'=>"$msgValidate"];
        }
+       //验证图形验证码
+       if(!captcha_check($vertify)){
+           $codeMsg = $this->showReturnCodeMsg('4000');
+           return ['status'=>2,'msg'=>"$codeMsg[msg]"];
+           exit();
+       };
        if ($controller == 'Register'){
            $templateCode = "SMS_109400226"; //注册
        } elseif($controller == 'Login'){
@@ -36,13 +43,16 @@ class Sms extends Controller
        $codeState = $regSms ->smsmSend("$phoneNumbers","$templateCode");
        //判断是否重复发送
        if($codeState == '202'){
-           return ['status'=>0,'msg'=>"请勿重复发送!"];
+           $codeMsg = $this->showReturnCodeMsg('3002');
+           return ['status'=>0,'msg'=>"$codeMsg[msg]"];
            exit();
        }
        if ($codeState == true) {
-           return ['status'=>1,'msg'=>"发送成功"];
+           $codeMsg = $this->showReturnCodeMsg('3000');
+           return ['status'=>1,'msg'=>"$codeMsg[msg]"];
        }else{
-           return ['status'=>0,'msg'=>"发送失败"];
+           $codeMsg = $this->showReturnCodeMsg('3001');
+           return ['status'=>0,'msg'=>"$codeMsg[msg]"];
        }
 
    }

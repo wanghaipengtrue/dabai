@@ -27,7 +27,7 @@ use \think\Route;
 Route::bind('index');
 
 //域名绑定 重要不要改动
-Route::domain('admin.tp.com','admin');//后台 1
+Route::domain('admin','admin');//后台 1
 Route::domain('ask','ask');//问答 1
 Route::domain('chaoshi','chaoshi');//宠物超市 1
 Route::domain('baike','baike');//百科 1
