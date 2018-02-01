@@ -1,10 +1,10 @@
 <?php
 namespace app\index\controller;
 
-use think\Controller;
+use app\index\model\BaseModel;
 use app\index\model\Smsm;
 use think\Request;
-use think\Session;
+use app\index\model\Member;
 
 /*
  * ==用户登录控制器==
@@ -17,7 +17,7 @@ use think\Session;
  * @loginSms    手机发送短信 登录所有适用 *
  * */
 
-class Login extends Controller
+class Login extends base
 {
     public  $regIp = ""; //ip
     public  $controller;
@@ -58,25 +58,26 @@ class Login extends Controller
         }
         //验证图形验证码
         if(!captcha_check($captcha)){
-            return ['status'=>0,'msg'=>"请输入正确的图形验证码!"];
-            die();
+            $codeMsg = $this->showReturnCodeMsg('4000');
+            return ['status'=>0,'msg'=>"$codeMsg[msg]"];exit();
         };
-        $memberR = db('member')->where('phone',"$Mobile")->find();
-        if(empty($memberR)){
-            return ['status'=>0,'msg'=>"账号不存在!"];
-            die();
+        $member = new Member();
+        $memberOne = $member->getMemberone("dabai_member","$Mobile");
+        if(empty($memberOne)){
+            $codeMsg = $this->showReturnCodeMsg('4001');
+            return ['status'=>0, 'msg'=>"$codeMsg[msg]"]; die();
         }
-        $PasswordHashs = new \PasswordHashs(8, false);
-        $PassworCheck = $PasswordHashs->CheckPassword("$Password", $memberR['password']);
+        //检测密码
+        $PassworCheck = $member->PassWordCheck("dabai_member",$memberOne['phone'],$memberOne['password']);
         if ($PassworCheck){
-            Session::set('isPhone',$memberR['phone']);
-            db('member')->where('id', $memberR['id'])->setInc('more');
-            $Tmsg = "登录成功！";
+            $this->RedisSession->write($memberOne['phone'],'DABAI'.$Mobile);
+            $member->MemberSetInc("dabai_member","$Mobile");
+            $codeMsg = $this->showReturnCodeMsg('1003');
             $Turl = Url('/index');
-            return ['status'=>1, 'msg'=>"$Tmsg",'Turl'=>"$Turl"];
+            return ['status'=>1, 'msg'=>"$codeMsg[msg]",'Turl'=>"$Turl"];
         }else{
-            $Tmsg = "密码错误,请重新输入!";
-            return ['status'=>0, 'msg'=>"$Tmsg"];
+            $codeMsg = $this->showReturnCodeMsg('1005');
+            return ['status'=>0, 'msg'=>"$codeMsg[msg]"];
         }
 
     }

@@ -203,7 +203,7 @@ return [
         // 缓存保存目录
         'path'   => CACHE_PATH,
         // 缓存前缀
-        'prefix' => 'dabai',
+        'prefix' => '',
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
     ],
@@ -219,7 +219,7 @@ return [
         // SESSION 前缀
         'prefix'         => 'think',
         // 驱动方式 支持redis memcache memcached
-        'type'           => '',
+        'type'           => 'redis',
         //过期时间
         'expire'        => '259200',
         // 是否自动开启 SESSION

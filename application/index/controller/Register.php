@@ -10,8 +10,8 @@ namespace app\index\controller;
 use app\index\model\Member;
 use app\index\model\Doctor as DoctorModel;
 use think\Request;
-use think\Session;
-use think\cache\driver\Redis;
+//use think\session\driver\Redis;
+//use think\cache\driver\Redis;
 use think\Db;
 
 class Register extends Base
@@ -20,12 +20,8 @@ class Register extends Base
    //用户注册
     public function  user()
     {
-        $redis = new redis();
 
-        echo $redis->get("15210086671");
-
-        $controller = $this->controller;
-        return $this->fetch('user',['controller'=>$controller]);
+        return $this->fetch('user',['controller'=>$this->controller]);
     }
     public function  reguser()
     {
@@ -52,7 +48,7 @@ class Register extends Base
         };
         //验证手机验证码
         $redis = new redis();
-        if($redis->get("$Mobile") != $code){
+        if($this->RedisSession->read("$Mobile") != $code){
             return ['status'=>0,'msg'=>"手机验证码错误!"];
             die();
         };
@@ -62,10 +58,7 @@ class Register extends Base
             return ['status'=>0,'msg'=>"手机号已注册!"];
         }
 
-        //加密插件 phpass-3.0
-        $PasswordHashs = new \PasswordHashs(8, false);
-        $hashedPassword = $PasswordHashs->HashPassword("$Password"); // 计算密码的哈希
-        $memberStats = $member->addMember("$Mobile","$hashedPassword");
+        $memberStats = $member->addMember("$Mobile","$Password");
         if ($memberStats == true){
             $Tmsg = "注册成功！";
             $Turl = Url('/index');
@@ -81,10 +74,7 @@ class Register extends Base
     //医生注册
     public function  doctor()
     {
-
-
         return $this->fetch('doctor');
-
     }
     public function  regdoctor(Request $request=null)
     {
@@ -119,6 +109,7 @@ class Register extends Base
             //验证手机验证码
             $redis = new redis();
             if($redis->get("$dmobilenum") != $dmobilecode){
+
                 return ['status'=>0,'msg'=>"手机验证码错误!"];
                 die();
             };

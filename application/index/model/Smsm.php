@@ -8,21 +8,20 @@
 
 namespace app\index\model;
 
-use think\Model;
 use think\Request;
 use think\Session;
 use think\cache\Driver;
 //use think\session\driver\Redis;不适合使用session 验证码
-use think\cache\driver\Redis; //缓存验证码
+//use think\cache\driver\Redis; //缓存验证码
 
-class Smsm extends Model
+class Smsm extends BaseModel
 {
 
-    public $accessKeyId = "UBmLTvamZ2FR1QYg"; // 阿里云KEY
-    public $accessKeySecret ="fM4e4IIIUaIfuDBZJJyOkVCPLEFDK6"; // 阿里Secret
-    public $signName="大白宠物"; // 阿里签名
-    public $phoneNumbers='';
-    public $templateCode='';
+    protected $accessKeyId = "UBmLTvamZ2FR1QYg"; // 阿里云KEY
+    protected $accessKeySecret ="fM4e4IIIUaIfuDBZJJyOkVCPLEFDK6"; // 阿里Secret
+    protected $signName="大白宠物"; // 阿里签名
+    protected $phoneNumbers='';
+    protected $templateCode='';
 
     //用户注册
     public  function __construct(Request $request = null)
@@ -35,8 +34,7 @@ class Smsm extends Model
 
     //发送手机验证码
     public function smsmSend($phoneNumbers,$templateCode){
-        $redis = new redis();
-        if ($redis->has("$phoneNumbers") == false){
+        if (!empty($this->RedisSession->read($phoneNumbers))){
             return '202';
             }else{
             $code = rand(100000, 999999);
@@ -45,7 +43,7 @@ class Smsm extends Model
             ));
             $codeState = $Code->Code;
             if ($codeState == 'OK') {
-                $redis->set("$phoneNumbers","$code","300");
+                $this->RedisSession->write("$phoneNumbers","$code");
                 return true ;
             }else{
                 return false ;

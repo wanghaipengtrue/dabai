@@ -10,20 +10,32 @@ namespace app\index\controller;
 
 use app\index\model\Member;
 use think\Request;
-use think\Session;
+//use think\Session;
 use think\cache\driver\Redis;
+use think\session\driver\Redis as RedisSession;
+use think\Log;
 
 class Base extends ReturnCode
 {
-    public  $regIp = ""; //ip
-    public  $controller;
+    protected  $regIp = ""; //ip
+    protected  $controller;
+    protected  $module;
+    protected  $action;
+
+    protected  $RedisSession;
 
     public  function __construct(Request $request = null)
     {
         parent::__construct();
         $request = Request::instance();
-      /*  $this->regIp = $request->ip();*/
+        $this->regIp = $request->ip();
         $this->controller = $request->controller();
+        $this->module = $request->module();
+        $this->action = $request->action();
+        //session redis 连接
+        $this->RedisSession = new RedisSession();
+        $this->RedisSession->open('','');
+
     }
     /**
      * @param string $code
@@ -33,22 +45,25 @@ class Base extends ReturnCode
      */
     static public function showReturnCode($code = '', $msg = '')
     {
-        $return_data = [
+        $returnData = [
             'code' => '500',
             'msg' => '未定义消息'
         ];
-        if (empty($code)) return $return_data;
-        $return_data['code'] = $code;
+        if (empty($code)) return $returnData;
+        $returnData['code'] = $code;
         if(!empty($msg)){
-            $return_data['msg'] = $msg;
+            $returnData['msg'] = $msg;
         }else if (isset(ReturnCode::$return_code[$code]) ) {
-            $return_data['msg'] = ReturnCode::$return_code[$code];
+            $returnData['msg'] = ReturnCode::$return_code[$code];
         }
-        return $return_data;
+        return $returnData;
     }
 
     static public function showReturnCodeMsg($code = '', $msg = '')
     {
         return self::showReturnCode($code,$msg);
+
     }
+
+
 }
