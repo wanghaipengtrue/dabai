@@ -1,0 +1,47 @@
+@charset "UTF-8";
+body{margin:0;height:100%;}
+img{vertical-align:middle;border:0}
+html{overflow-y:hidden;font-size:50px;-webkit-tap-highlight-color:transparent;height:100%;min-width:320px;overflow-x:hidden}
+
+.admin-login{
+    font-size: 14px;
+    width: 400px;
+    height: auto;
+    color: #EEE;
+    position: absolute;
+    left: 32%;
+    top: 160px;
+    padding:40px;
+    box-shadow:0 -15px 30px #F0F0F0;
+    border-radius:5px;}
+.admin-login h2{
+    font-weight: bold;
+    font-size:26px;
+    text-align: center;
+    color: #1E9FFF;
+    margin-bottom: 40px;
+}
+/*.admin-login .inline .layui-input{
+    width: 120px !important;
+}*/
+.admin-login .layui-form-label{
+    color: #000;
+}
+.admin-login .layui-form-mid {
+    width: 80px;
+    padding: 8px 15px;
+    left: -1px;
+    height: 38px;
+    line-height: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 0 2px 2px 0;
+    text-align: center;
+    background-color: #FBFBFB;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+
+

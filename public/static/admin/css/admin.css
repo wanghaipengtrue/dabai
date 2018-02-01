@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.label_radio, .label_check{
+    height: 21px;
+    font-weight: 400;
+    margin-right: 30px;
+}
+.btn-top{
+    margin-top: 110px;
+    margin-left: 20px;
+}
