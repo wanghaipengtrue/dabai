@@ -24,7 +24,7 @@ class Login extends Base
     }
     public function  user()
     {
-echo $this->RedisSession->read("15210086671");
+        //$this->RedisSession->read("15210086671");
         return $this->fetch("user");
     }
     public  function userHandle(Request $request=null){
@@ -51,7 +51,7 @@ echo $this->RedisSession->read("15210086671");
                 return ['status' => 0, 'msg' => "$codeMsg[msg]"];
             }
             //检测密码
-            $PassworCheck = $member->PassWordCheck("dabai_member", $memberOne['phone'], $memberOne['password']);
+            $PassworCheck = $member->PassWordCheck("dabai_member", $memberOne['phone'], "$Password");
             if ($PassworCheck) {
                 $this->RedisSession->write($memberOne['phone'], 'DABAI' . $Mobile);
                 $member->MemberSetInc("dabai_member", "$Mobile");

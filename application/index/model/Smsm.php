@@ -34,7 +34,7 @@ class Smsm extends BaseModel
 
     //发送手机验证码
     public function smsmSend($phoneNumbers,$templateCode){
-        if (empty($this->RedisSession->read($phoneNumbers))){
+        if (!empty($this->RedisSession->read($phoneNumbers))){
             return '202';
             }else{
             $code = rand(100000, 999999);
