@@ -12,7 +12,7 @@ class Register extends Validate
     ];
 
     protected $message  =   [
-        'regMobile.require' => '请填写手机号',
+        'regMobile.require' => '请输入手机号',
         'regMobile.max'     => '请输入有效的手机号码',
         'regMobile.number'  =>'请输入有效的手机号码',
         'code.number'       =>'短信验证码必须是数字',

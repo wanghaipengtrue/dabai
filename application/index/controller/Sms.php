@@ -29,7 +29,7 @@ class Sms extends Base
        //验证图形验证码
        if(!captcha_check($vertify)){
            $codeMsg = $this->showReturnCodeMsg('4000');
-           return ['status'=>2,'msg'=>"$codeMsg[msg]"];
+           return ['status'=>2,'msg'=>"$codeMsg[msg]".'ss'];
            exit();
        };
        if ($controller == 'Register'){

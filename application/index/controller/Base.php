@@ -36,6 +36,9 @@ class Base extends ReturnCode
         $this->RedisSession = new RedisSession();
         $this->RedisSession->open('','');
 
+        //检测用户登录
+        /*$isCheck =new Check();
+        $isCheck->isCheckUser();*/
     }
     /**
      * @param string $code

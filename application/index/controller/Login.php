@@ -1,8 +1,6 @@
 <?php
 namespace app\index\controller;
 
-use app\index\model\BaseModel;
-use app\index\model\Smsm;
 use think\Request;
 use app\index\model\Member;
 
@@ -17,21 +15,8 @@ use app\index\model\Member;
  * @loginSms    手机发送短信 登录所有适用 *
  * */
 
-class Login extends base
+class Login extends Base
 {
-    public  $regIp = ""; //ip
-    public  $controller;
-   public function __construct(Request $request = null)
-   {
-       parent::__construct($request);
-       $request = Request::instance();
-       $this->regIp = $request->ip();
-       $this->controller = $request->controller();
-       //检测用户登录
-       /*$isCheck =new Check();
-       $isCheck->isCheckUser();*/
-   }
-
     public function  index()
     {
 
@@ -39,45 +24,44 @@ class Login extends base
     }
     public function  user()
     {
-
+echo $this->RedisSession->read("15210086671");
         return $this->fetch("user");
     }
-    public  function userDo(){
-        $Mobile =  input('regMobile'); // 手机号
-        $captcha = input('imgVerifycode');//图形
-        $Password = input('regPassword');// 密码
-        //验证数据
-        $rule = [
-            'regMobile'  =>  $Mobile,
-            'regPassword' =>  $Password
-        ];
-        //加载验证器
-        $msgValidate = $this->validate($rule,'Register');
-        if(true !== $msgValidate){
-            return ['status'=>0,'msg'=>"$msgValidate"];
-        }
-        //验证图形验证码
-        if(!captcha_check($captcha)){
-            $codeMsg = $this->showReturnCodeMsg('4000');
-            return ['status'=>0,'msg'=>"$codeMsg[msg]"];exit();
-        };
-        $member = new Member();
-        $memberOne = $member->getMemberone("dabai_member","$Mobile");
-        if(empty($memberOne)){
-            $codeMsg = $this->showReturnCodeMsg('4001');
-            return ['status'=>0, 'msg'=>"$codeMsg[msg]"]; die();
-        }
-        //检测密码
-        $PassworCheck = $member->PassWordCheck("dabai_member",$memberOne['phone'],$memberOne['password']);
-        if ($PassworCheck){
-            $this->RedisSession->write($memberOne['phone'],'DABAI'.$Mobile);
-            $member->MemberSetInc("dabai_member","$Mobile");
-            $codeMsg = $this->showReturnCodeMsg('1003');
-            $Turl = Url('/index');
-            return ['status'=>1, 'msg'=>"$codeMsg[msg]",'Turl'=>"$Turl"];
-        }else{
-            $codeMsg = $this->showReturnCodeMsg('1005');
-            return ['status'=>0, 'msg'=>"$codeMsg[msg]"];
+    public  function userHandle(Request $request=null){
+        if($request->isAjax()) {
+            $Mobile = input('signinMobile'); // 手机号
+            $captcha = input('imgVerifycode');//图形
+            $Password = input('signinPassword');// 密码
+            //验证数据
+            $rule = ['regMobile' => $Mobile, 'regPassword' => $Password];
+            //加载验证器
+            $msgValidate = $this->validate($rule, 'Register');
+            if (true !== $msgValidate) {
+                return ['status' => 0, 'msg' => "$msgValidate"];
+            }
+            //验证图形验证码
+            if (!captcha_check($captcha)) {
+                $codeMsg = $this->showReturnCodeMsg('4000');
+                return ['status' => 0, 'msg' => "$codeMsg[msg]"];
+            };
+            $member = new Member();
+            $memberOne = $member->getMemberone("dabai_member", "$Mobile");
+            if (empty($memberOne)) {
+                $codeMsg = $this->showReturnCodeMsg('4001');
+                return ['status' => 0, 'msg' => "$codeMsg[msg]"];
+            }
+            //检测密码
+            $PassworCheck = $member->PassWordCheck("dabai_member", $memberOne['phone'], $memberOne['password']);
+            if ($PassworCheck) {
+                $this->RedisSession->write($memberOne['phone'], 'DABAI' . $Mobile);
+                $member->MemberSetInc("dabai_member", "$Mobile");
+                $codeMsg = $this->showReturnCodeMsg('1003');
+                $Turl = Url('/');
+                return ['status' => 1, 'msg' => "$codeMsg[msg]", 'Turl' => "$Turl"];
+            } else {
+                $codeMsg = $this->showReturnCodeMsg('1005');
+                return ['status' => 0, 'msg' => "$codeMsg[msg]"];
+            }
         }
 
     }

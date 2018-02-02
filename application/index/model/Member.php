@@ -24,9 +24,7 @@ class Member extends Model
         $this->regIp = $request->ip();
     }
     //注册用户
-
     public function addMember($Mobile,$Password){
-        //加密插件 phpass-3.0
         $hashedPassword = self::PassWordHashs("$Password");
         $this->data([
             'phone' => "$Mobile",
@@ -35,7 +33,7 @@ class Member extends Model
             'regip' =>$this->regIp,
             'logip' =>$this->regIp
         ]);
-        if ($this->save() == true){
+        if ($this->save()){
             return true;
         }else{
             return false;
