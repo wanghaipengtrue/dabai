@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/12/25
- * Time: 11:18
- */
-
 namespace app\index\controller;
 
+/*大白宠物 文章
+ *
+ * **/
 
 use think\Controller;
 use think\Request;
@@ -19,11 +15,8 @@ class Article extends Controller
 
     public function index(Request $request = null)
     {
-        echo "11122";
 
-
-
-        return $this->fetch("index",['sss'=>'44444444444']);
+        return $this->fetch("index");
     }
 
     public function details()

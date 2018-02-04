@@ -43,7 +43,7 @@ Route::domain('news','@\app\index\controller\News');//文章
 
 //配置定义系统默认
 return [
-    '/' => '/index', // 首页访问路由
+    '/' => '', // 首页访问路由
     //前台 nav
     //'/Register/hospital' => 'index/Register/hospital', // 首页访问路由
 

@@ -2,7 +2,7 @@
  * 大白宠物医院注册表单JS
  * */
 function fleshVerify(){
-    $('#imgVerify').attr('src','http://dabaipet.com/captcha.html&id='+Math.floor(Math.random()*100));
+    $('#imgVerify').attr('src','http://dabaipet.com/captcha?id='+Math.floor(Math.random()*100));
 }
 function checkLogin(){
     var formdata = new FormData(document.getElementById("signinForm"));
@@ -11,7 +11,7 @@ function checkLogin(){
     var mobile = $('#signinMobile').val();
     var password = $('#signinPassword').val();
     var vertify = $('#imgVerifycode').val();
-    var regmCode = $('#regmCode').val();
+    var signinCode = $('#signinCode').val();
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     if( mobile == ''){
         layer.msg('手机号码不能为空!'); return;
@@ -49,7 +49,7 @@ function checkLogin(){
 }
 
 $(".clickCode").on("click", function() {
-    var mobile = $('#regMobile').val();
+    var mobile = $('#signinMobile').val();
     var vertify = $('#imgVerifycode').val();
     var controller = $('#controller').val();
     var s = parseInt($(".clickCode i").html());

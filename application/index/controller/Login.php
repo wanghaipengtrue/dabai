@@ -7,9 +7,9 @@ use app\index\model\Member;
 /*
  * ==用户登录控制器==
  * @user    用户登录页面
- * @userDo  用户登录处理
+ * @userHandle  用户登录处理
  * @userMobile  用户手机登录
- * @userMobileDo    用户手机登录处理
+ * @userMobileHandle    用户手机登录处理
  * @doctor  医生登录
  * @doctor  医生登录处理
  * @loginSms    手机发送短信 登录所有适用 *
@@ -32,6 +32,7 @@ class Login extends Base
             $Mobile = input('signinMobile'); // 手机号
             $captcha = input('imgVerifycode');//图形
             $Password = input('signinPassword');// 密码
+            $regmCode = input('regmCode');// 手机验证码
             //验证数据
             $rule = ['regMobile' => $Mobile, 'regPassword' => $Password];
             //加载验证器
@@ -44,6 +45,11 @@ class Login extends Base
                 $codeMsg = $this->showReturnCodeMsg('4000');
                 return ['status' => 0, 'msg' => "$codeMsg[msg]"];
             };
+            //手机验证码登录
+            if($this->RedisSession->read("$Mobile") != $regmCode){
+                echo "11";
+
+            }
             $member = new Member();
             $memberOne = $member->getMemberone("dabai_member", "$Mobile");
             if (empty($memberOne)) {
@@ -72,38 +78,7 @@ class Login extends Base
 
         return $this->fetch("usermobile",['controller'=>$controller]);
     }
-    //用户手机登录操作
-    public function  userMobileDo()
-    {
-        $Mobile =  input('regMobile'); // 手机号
-        $captcha = input('imgVerifycode');//图形
-        $regmCode = input('regmCode');// 密码
-        //验证数据
-        $rule = [
-            'regMobile'  =>  $Mobile,
-            'code' =>  $regmCode
-        ];
-        //加载验证器
-        $msgValidate = $this->validate($rule,'Register');
-        if(true !== $msgValidate){
-            return ['status'=>0,'msg'=>"$msgValidate"];
-        }
-        //验证图形验证码
-        if(!captcha_check($captcha)){
-            return ['status'=>0,'msg'=>"请输入正确的图形验证码!"];
-            die();
-        }
-        if(Session::get("$Mobile") == $regmCode){
-            Session::set('isPhone',$Mobile);
-            $Tmsg = "登录成功！";
-            $Turl = Url('/index');
-            return ['status'=>1, 'msg'=>"$Tmsg",'Turl'=>"$Turl"];
-        }else{
-            return ['status'=>0,'msg'=>"手机验证码错误!"];
-            die();
-        }
 
-    }
     //医生登录
     public function  doctor()
     {

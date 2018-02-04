@@ -22,8 +22,8 @@ class Index extends Controller
     }
     public function  index()
     {
-        Config::load(APP_PATH.'config/extra/admin_config.php');
-        echo Config::get('admin_web.title');
+        /*Config::load(APP_PATH.'config/extra/admin_config.php');
+        echo Config::get('admin_web.title');*/
         //echo Env::get('database.username');
         return $this->fetch("index");
     }

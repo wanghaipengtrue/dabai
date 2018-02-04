@@ -2,7 +2,7 @@
 * 大白宠物医院注册表单JS
 * */
 function fleshVerify(){
-    $('#imgVerify').attr('src','http://dabaipet.com/captcha.html&id='+Math.floor(Math.random()*100));
+    $('#imgVerify').attr('src','http://dabaipet.com/captcha?id='+Math.floor(Math.random()*100));
 }
 function checkReg(){
     var form = new FormData(document.getElementById("signupForm"));
