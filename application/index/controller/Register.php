@@ -59,9 +59,9 @@ class Register extends Base
     {
         return $this->fetch('doctor');
     }
+
     public function  regdoctor(Request $request=null)
     {
-        //ajax
         if ($request->isAjax()){
             $dname = input('dname');
             $dsex = input('dsex');
@@ -71,7 +71,6 @@ class Register extends Base
             $dpiccode = input('dpiccode');
             $dmobilecode = input('dmobilecode');
             $dpassword = input('dpassword');
-            //校验数据
             //验证数据
             $rule = [
                 'regMobile'  =>  $dmobilenum,
@@ -86,15 +85,12 @@ class Register extends Base
             //验证图形验证码
             if(!captcha_check($dpiccode)){
                 $codeMsg = $this->showReturnCodeMsg('4000');
-                return ['status'=>2,'msg'=>"$codeMsg"];
-                die();
+                return ['status'=>0,'msg'=>"$codeMsg"];
             };
             //验证手机验证码
-            $redis = new redis();
-            if($redis->get("$dmobilenum") != $dmobilecode){
-
-                return ['status'=>0,'msg'=>"手机验证码错误!"];
-                die();
+            if($this->RedisSession->read("$Mobile") != $code){
+                $codeMsg = $this->showReturnCodeMsg('3003');
+                return ['status'=>0,'msg'=>"$codeMsg[msg]"];
             };
             $data = [
                 'phone' => "$Mobile",
@@ -110,20 +106,7 @@ class Register extends Base
                 return ['status'=>0,'msg'=>"手机号已注册!"];
             }
 
-            //加密插件 phpass-3.0
-            $PasswordHashs = new \PasswordHashs(8, false);
-            $hashedPassword = $PasswordHashs->HashPassword("$Password"); // 计算密码的哈希
-            $memberStats = $member->addMember("$Mobile","$hashedPassword");
-            if ($memberStats == true){
-                $Tmsg = "注册成功！";
-                $Turl = Url('/index');
-                return ['status'=>1,'msg'=>"$Tmsg",'Turl'=>"$Turl"];
-                exit();
-            }else{
-                $Tmsg = "注册失败！";
-                return ['status'=>0,'msg'=>"$Tmsg"];
-                exit();
-            }
+
         }
     }
     //医院入驻
