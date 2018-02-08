@@ -2,7 +2,7 @@
 * 大白宠物医院注册表单JS
 * */
 function fleshVerify(){
-    $('#imgVerify').attr('src','http://dabaipet.com/captcha?id='+Math.floor(Math.random()*100));
+    $('#imgVerify').attr('src','http://www.dabaipet.com/captcha?id='+Math.floor(Math.random()*100));
 }
 function checkReg(){
     var form = new FormData(document.getElementById("signupForm"));
@@ -57,39 +57,41 @@ function checkReg(){
 
 //医生注册
 function checkRegDoctor(){
-    var formData = new FormData(document.getElementById("signupForm"));
+    //var formData = new FormData(document.getElementById("signupForm"));
     var furl = $("form").attr("action");
 
     var dname = $('#dname').val();
+    var dsex = $("input[name='sex']").val();
     var dtitle = $('#dtitle').val();
-    var dnumber = $('#dnumber').val();
+    var doctornumber = $('#doctornumber').val();
     var mobilenum = $('#mobilenum').val();
     var dpiccode = $('#imgVerifycode').val();
     var dmobilecode = $('#dmobilecode').val();
     var dpassword = $('#dpassword').val();
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    var passreg=/^[A-Za-z0-9]+$/;
 
     if( dname == ''){
-        layer.msg('请填写本人真实姓名!');return;
+        layer.msg('请填写本人真实姓名');return;
     }
     if( dtitle == ''){
-        layer.msg('请填写本人所在医院全称!'); 
+        layer.msg('请填写本人所在医院全称');
         return;
     }
-    if( dnumber == ''){
-        layer.msg('请填写本人执业医师证号'); 
+    if( doctornumber == ''){
+        layer.msg('请填写本人执业医师证号');
         return;
     }
     if( mobilenum == ''){
-        layer.msg('请填写本人手机号码'); 
+        layer.msg('请填写本人手机号码');
         return;
     }
     if( mobilenum.length!= 11 || !myreg.test(mobilenum)){
-        layer.msg('请填写有效的手机号码！'); 
+        layer.msg('请填写有效的手机号码');
         return;
     }
     if(dpiccode =='' || dpiccode.length!=3){
-        layer.msg('请填写正确的图形验证码!');
+        layer.msg('请填写正确的图形验证码');
         $('#imgVerify').trigger('click');
         return;
     }
@@ -97,16 +99,15 @@ function checkRegDoctor(){
         layer.msg('请填写有效的手机验证码');
         return;
     }
-    if(dpassword =='' || dpassword.length<6){
+    if(!passreg.test(dpassword)||dpassword.length<6||dpassword.length>15){
         layer.msg('请设置有效登录密码');
         return;
     }
+
     $.ajax({
         url:furl,
         type:'post',
-        data:formData,
-        processData:false,
-        contentType:false,
+        data:{dname:dname,dsex:dsex,dtitle:dtitle,doctornumber:doctornumber,mobilenum:mobilenum,dpiccode:dpiccode,dmobilecode:dmobilecode,dpassword:dpassword},
         success:function(res){
             if(res.status==1){
                 layer.alert(res.msg, {icon: 1,btn: ['确定'],yes: function(index, layero){
@@ -139,7 +140,7 @@ $(".clickCode").on("click", function() {
     if (s > 0) {
         return false;
     }
-    $.post("http://dabaipet.com/sms/sendSms", {
+    $.post("http://www.dabaipet.com/sms/sendSms", {
         regMobile: mobile,
         controller:controller,
         vertify:vertify

@@ -22,10 +22,8 @@
 //+----------------------------------------------------------------------
 //路由动态注册和配置定义的方式可以共存
 use \think\Route;
-
 // 绑定默认index模块
 Route::bind('index');
-
 //域名绑定 重要不要改动
 Route::domain('admin','admin');//后台 1
 Route::domain('ask','ask');//问答 1
@@ -36,21 +34,11 @@ Route::domain('doctor','@\app\index\controller\Doctor');//医生
 Route::domain('hospital','@\app\index\controller\Hospital');//医院
 Route::domain('news','@\app\index\controller\News');//文章
 
-
-
-
 //后台
 
 //配置定义系统默认
 return [
     '/' => '', // 首页访问路由
-    //前台 nav
-    //'/Register/hospital' => 'index/Register/hospital', // 首页访问路由
-
-    //前台 医生详情ID
-   /* '[doctor]'     => [
-        ':id'   => ['index/doctor/details', ['method' => 'get'], ['id' => '\d+']],
-    ],*/
 
     //前台 医院详情ID
     '[hospital]'     => [
