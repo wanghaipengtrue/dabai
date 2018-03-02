@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>宠物医院</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    {load file='__bootstrap__/css/bootstrap.min.css'}
-    {load file='__bootstrap__/css/font-awesome.min.css'}
+    {load file='__layui__/css/layui.css'}
+    {load file='__layui__/layui.js'}
     {load file='__css__/currency.css'}
     {load file='__css__/pet-list.css'}
-    {load file='__js__/jquery-1.12.0.min.js'}
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
 <!--big box-->
 {include file="public/header" /}
-<div class="container mt15">
-    <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 H-select clearfix">
-        <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 pageTab mb20">
+<div class="layui-container mt15">
+    <div class="layui-row ">
+    <div class="layui-col-xs12 layui-col-md12 layui-col-lg12 H-select clearfix">
+        <div class="layui-row">
+        <div class="layui-sm-12 layui-md-12 layui-lg-12 pageTab ">
             <div class="list-ico">
                 <i class="icoico icon-medkit"></i><a href="" class="item1">服务推荐</a>
             </div>
@@ -30,9 +33,9 @@
         </div>
         </div>
         <!--地区-->
-        <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 selsect-item">
-            <div class="item-cont">
+        <div class="layui-row">
+        <div class="layui-col-xs12 layui-col-md12 layui-col-lg12 selsect-item">
+            <div class="item-cont mt15">
                 <span class="item-tit left">地区</span>
                 <dl class="left item-links">
                     <dt class="left "><a href="/" class="now">全部</a></dt>
@@ -91,10 +94,9 @@
                     </dd>
                 </dl>
         </div>
-
         <!--//地区-->
         <!--擅长-->
-            <div class="item-cont">
+            <div class="item-cont mt15">
                 <span class="item-tit left">科室</span>
                 <dl class="left item-links">
                     <dt class="left"><a href="/" class="now">全部</a></dt>
@@ -111,10 +113,9 @@
                     </dd>
                 </dl>
             </div>
-
         <!--//擅长-->
         <!--更多筛选-->
-            <div class="item-cont">
+            <div class="item-cont mt15">
                 <span class="item-tit">等级</span>
                 <dl class="left item-links ">
                     <dt class="left"><a href="/" class="now">全部</a></dt>
@@ -135,8 +136,8 @@
     </div>
 </div>
  </div>
-    <div class="row H-wrap mt20">
-    <div class="wrap-left col-sm-9 col-md-9 col-lg-9">
+    <div class="layui-row layui-col-space20 H-wrap mt20">
+    <div class="wrap-left layui-col-xs9 layui-col-md9 layui-col-lg9">
         <div class="HList">
             <dl>
             <dt class="hos-info clearfix">
@@ -148,7 +149,7 @@
                 <div class="item2">
                     <div class="inline"><i>资质：</i><b>民营</b><b>民营一级医院</b></div>
                     <div class="Hlistauth">
-                        <span><i class="icon-ok"></i> 大白认证宠物医院</span>
+                        <span><i class="fa fa-check-circle"></i> 大白认证宠物医院</span>
                         <!-- <p class="hide-more">
                              <i></i>
                              <span>类型：民营一级医院</span>
@@ -156,8 +157,8 @@
                          </p>-->
                     </div>
                 </div>
-                <span class="item2"><i>地址：</i><b>双井富力城星光大道A9-6</b></span>
-                <a target="_blank" href="//www.yuemei.com/hospital/3345/" class="item3">查看医院</a>
+                <span class="item2"><i class="inline">地址：</i><b>双井富力城星光大道A9-6</b></span>
+                <a target="_blank" href="" class="item3">查看医院</a>
             </div>
             <div class="Hlistcase left">
                 <div class="left">
@@ -166,9 +167,9 @@
                     <a href="//www.yuemei.com/hospital/3345/evaluation.html" class="c999" target="_blank">来自1766人评价</a>
                 </div>
                 <div class="right">
-                    <span><i>效<b>果：</b></i>4.7分</span>
-                    <span><i>服<b>务：</b></i>4.7分</span>
-                    <span><i>医<b>生：</b></i>4.8分</span>
+                    <span><i>效果：</i>4.7分</span>
+                    <span><i>服务：</i>4.7分</span>
+                    <span><i>医生：</i>4.8分</span>
                 </div>
             </div>
             </dt>
@@ -206,9 +207,10 @@
             </dd>
         </dl>
 
+
         </div>
     </div>
-    <div class="wrap-right col-sm-3 col-md-3 col-lg-3">
+    <div class="wrap-right layui-col-xs3 layui-col-sm3 layui-col-md3">
 2
     </div>
     </div>

@@ -39,6 +39,7 @@
 .selsect-item {
     line-height: 26px;
     clear: both;
+    padding: 0 0 0 20px;
 }
 .selsect-item .item-cont {
     width: 100%;
@@ -54,7 +55,7 @@
     float: left;
     border-right: 1px solid #fff;
     color: #a1a1a1;
-    line-height: 20px;
+   
 }
 
 
@@ -85,6 +86,7 @@
     padding-top: 6px;
     padding-bottom: 6px;
     background: #f8f8f8;
+    float: left;
 }
 .mTop7 {
     margin-top: 7px;
@@ -119,6 +121,7 @@
 }
 .hos-info {
     overflow: visible;
+    height: 120px;
 }
 
 .Hlistimg, .Hlistimg img {
@@ -130,7 +133,7 @@
 }
 .Hlistrelated {
     float: left;
-    width: 430px;
+    width: 390px;
 }
 .Hlistrelated .item1 {
     font-size: 16px;
@@ -139,9 +142,9 @@
 .Hlistrelated > span {
     display: block;
 }
-.Hlistrelated div.item2 {
+/*.Hlistrelated div.item2 {
     height: 17px;
-}
+}*/
 .Hlistrelated .item2 {
     padding-top: 9px;
 }
@@ -149,7 +152,7 @@
 .item2 .inline {
     float: left;
 }
-.item2 .inline i {
+.item2 .inline i , .item2 .inline {
     color: #999;
     font-style: normal;
 }
@@ -182,6 +185,9 @@
     color: #666;
     margin-top: 19px;
 }
+.Hlistrelated .item3:hover {
+    color: #377bee; border-color: #377bee;
+}
 .Hlistcase .left {
     border-right: 1px solid #f3f3f3;
     padding-right: 25px;
@@ -194,7 +200,7 @@
 }
 .Hlistcase .levNum em {
     font-size: 22px;
-    color: #377bee;
+    color: #FF0036;
 }
 .Hlistcase .left p {
     position: relative;
@@ -228,8 +234,8 @@
 }
 .Hlistcase .right i {
     display: inline-block;
-    width: 61px;
     position: relative;
+    letter-spacing:10px;
 }
 .doc-serv {
     padding-top: 25px;
@@ -260,7 +266,7 @@
 }
 
 .doc-serv > a .item1 {
-    margin-right: 155px;
+    margin-right: 160px;
 }
 .doc-serv > a{ line-height: 42px; display: block; overflow: hidden; border-bottom: 1px dashed #f3f3f3; }
 
@@ -284,7 +290,11 @@
 }
 
 .hos-serv .item4 {
-    width: 144px;
+    width: 80px;
+}
+.hos-serv .item4 em{
+    color:#FF0036 ;
+    font-size: 14px;
 }
 .doc-serv .checkMore {
     line-height: 42px;
